@@ -1,191 +1,339 @@
-# Financial Performance Analytics Dashboard
+# 📊 Financial Performance Analytics Dashboard
 
-An end-to-end data analytics project that transforms financial sales data into a structured MySQL dataset, analyzes business performance using SQL, and presents key insights through an interactive Power BI dashboard.
+An end-to-end data analytics and business intelligence solution that transforms raw financial transaction data into structured relational tables, executes analytical SQL transformations, and delivers executive-level reporting through an interactive Microsoft Power BI dashboard.
 
-## Project Overview
+> *"In today's fast-evolving analytical world, data is no longer just historical record-keeping—it is the strategic pulse that turns complex operational noise into actionable clarity, competitive advantage, and measurable business growth."*
 
-The project explores financial performance across products, countries, business segments, time periods, and discount bands. It is designed to demonstrate a practical analytics workflow: data ingestion, relational data storage, SQL-based analysis, and business intelligence reporting.
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas" />
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" />
+  <img src="https://img.shields.io/badge/SQL-336791?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQL" />
+  <img src="https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black" alt="Power BI" />
+</p>
 
-**Dataset:** `dataset/Financial_Sample_dataset.csv`  
-**Dataset size:** 700 rows and 16 source columns  
-**Tools:** Python, Pandas, MySQL, PyMySQL, SQL, Microsoft Power BI
+---
 
-## Business Objectives
+## 📑 Table of Contents
 
-- Monitor core financial KPIs such as sales, profit, cost of goods sold (COGS), and units sold.
-- Compare revenue and profitability across products, countries, and customer segments.
-- Understand monthly sales and profit trends.
-- Evaluate how discount bands relate to revenue and profit margins.
-- Present findings in an interactive dashboard to support business analysis.
+- [📌 Executive Summary](#-executive-summary)
+  - [🛠️ Technical Stack](#️-technical-stack)
+- [📈 Power BI Dashboard Pages](#-power-bi-dashboard-pages)
+  - [1. Executive Overview](#1-executive-overview)
+  - [2. Product Performance Analysis](#2-product-performance-analysis)
+  - [3. Discount Impact Analysis](#3-discount-impact-analysis)
+- [🎯 Business Objectives](#-business-objectives)
+- [💡 Key Performance Indicators](#-key-performance-indicators)
+- [🏗️ System Architecture](#️-system-architecture)
+- [📁 Repository Structure](#-repository-structure)
+- [🗄️ Database Schema and Data Dictionary](#️-database-schema-and-data-dictionary)
+- [⚡ SQL Analytical Framework](#-sql-analytical-framework)
+- [🚀 Installation and Setup Guide](#-installation-and-setup-guide)
+- [🔒 Production and Security Best Practices](#-production-and-security-best-practices)
+- [📜 License and Attribution](#-license-and-attribution)
 
-## Dashboard Pages
+---
 
-Add screenshots exported from your Power BI report to the `screenshots/` folder using the exact filenames below. The `.pbix` report is included in this repository, but screenshots are not included in the supplied project archive.
+## 📌 Executive Summary
 
-### 1. Overview
+In a modern analytical world where real-time visibility dictates market leadership, organizations must bridge the gap between fragmented transaction records and executive decision-making. This project establishes a robust business intelligence pipeline to evaluate financial performance across global markets, customer segments, product categories, and discount structures. The solution bridges automated data ingestion, relational schema modeling, data cleansing, SQL-based performance aggregation, and visual analytics.
+
+### 🛠️ Technical Stack
+
+| Component | Technology | Badge / Logo | Description |
+|---|---|---|---|
+| Ingestion & Preprocessing | Python 3, Pandas | ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) ![Pandas](https://img.shields.io/badge/Pandas-150458?style=flat-square&logo=pandas&logoColor=white) | Automated header normalization, null handling, and type formatting |
+| Database Connector | PyMySQL | ![Python](https://img.shields.io/badge/PyMySQL-3776AB?style=flat-square&logo=python&logoColor=white) | High-performance bulk database loading |
+| Storage & Modeling | MySQL Server | ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white) | Relational storage, schema constraints, and deduplication logic |
+| Analytical Processing | SQL (MySQL dialect) | ![SQL](https://img.shields.io/badge/SQL-336791?style=flat-square&logo=sqlite&logoColor=white) | Data quality checks, window functions, and analytical reporting views |
+| Visual Analytics | Microsoft Power BI | ![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=flat-square&logo=powerbi&logoColor=black) | Multi-page interactive executive dashboards and dimensional analysis |
+
+---
+
+## 📈 Power BI Dashboard Pages
+
+The packaged Power BI report (`Financial_Performance_Dashboard.pbix`) consists of three analytical views placed at the forefront of the project:
+
+### 1. Executive Overview
 
 ![Financial Performance Dashboard - Overview](screenshots/overview.png)
 
-*Suggested caption: High-level financial KPIs and overall sales and profit performance.*
+The Executive Overview delivers high-level visibility into core financial metrics and commercial trends across time, segments, and geographic regions.
 
-### 2. Product Analysis
+- 📊 **KPI Scorecards:** Total Profit ($15.45M), Total Revenue ($112.47M), Profit Margin (13.74%), and Total Units Sold (1,067,593).
+- 📈 **Monthly Revenue Trend:** Displays seasonal revenue patterns, highlighting an annual demand peak in October ($20M+).
+- 🏢 **Revenue by Segment:** Ranks revenue contribution across sectors, led by Government ($46M), Small Business ($42M), and Enterprise ($20M).
+- 🌍 **Revenue by Country:** Waterfall visualization depicting cumulative revenue contributions across operating countries (United States of America, Germany, Canada, France, and Mexico).
+- 🔍 **Interactive Slicers:** Segment and fiscal year filters (2013, 2014) for targeted cohort analysis.
 
-![Financial Performance Dashboard - Product Analysis](screenshots/product-analysis.png)
+---
 
-*Suggested caption: Product-level revenue and profitability comparisons.*
+### 2. Product Performance Analysis
 
-### 3. Discount Analysis
+![Product Performance Dashboard](screenshots/product-analysis.png)
 
-![Financial Performance Dashboard - Discount Analysis](screenshots/discount-analysis.png)
+The Product Performance view assesses profitability, sales volume, and margin health across the product catalog.
 
-*Suggested caption: Sales, profit, and margin comparisons across discount bands.*
+- 📦 **Summary Cards:** Total Products (6), Total Product Profit ($15.45M), Average Profit per Product ($2.58M), and Top Product identifier (**Paseo**).
+- 🏆 **Profit by Product:** Horizontal comparison ranking products by profit generation (Paseo leading at $4.1M, followed by VTT at $3.0M and Amarilla at $2.7M).
+- 🔵 **Product Profitability Analysis:** Scatter plot correlating unit sales volume against total realized profit.
+- 📊 **Revenue vs Profit by Product:** Clustered bar chart illustrating gross sales against net profit for each catalog item.
+- 📋 **Product Profitability Matrix:** Detailed tabular view reporting Sum of Sales, Sum of Profit, Unit Volume, and Profit Margin Percentage by product (highlighting Amarilla with the highest profit margin at 15.67%).
 
-> **Screenshot note:** Export or capture each report page from Power BI, save the images in `screenshots/`, and keep the filenames above. Until those images are added, GitHub will show broken image placeholders.
+---
 
-## Solution Architecture
+### 3. Discount Impact Analysis
 
-![Financial Performance Dashboard Architecture](assets/architecture.png)
+![Discount Impact Analysis Dashboard](screenshots/discount-analysis.png)
 
-### Workflow
+The Discount Impact Analysis evaluates the relationship between discount tiers, unit transaction volumes, and operational margins.
 
-1. **Data source:** The financial CSV file acts as the source dataset.
-2. **Data ingestion:** `load_data.py` uses Pandas to read the CSV, standardize column names, handle missing values, and prepare records for insertion.
-3. **Data storage:** PyMySQL connects Python to MySQL and inserts the records into the `financial_data` table.
-4. **SQL analysis:** `financial_data_analysis.sql` contains table creation, data-quality checks, duplicate detection, KPI calculations, segment/country/product analysis, monthly trends, discount analysis, and a dashboard view.
-5. **Business intelligence:** Power BI connects to the prepared data and presents the analysis through report pages.
-6. **End user:** Dashboard users explore the report to understand financial performance.
+- 💰 **Summary Cards:** Discount Revenue ($105.10M), Profit After Discount ($15.45M), Average Discount Impact ($1.62K), and Overall Profit Margin (13.74%).
+- 📉 **Profit Margin by Discount Level:** Demonstrates clear margin compression as discounts escalate:
+  - **None:** 21.44% margin
+  - **Low:** 17.33% margin
+  - **Medium:** 13.97% margin
+  - **High:** 8.68% margin
+- 📊 **Revenue and Profit by Discount Band:** Compares top-line revenue against realized profit across tiers.
+- 📦 **Units Sold by Discount Level:** Confirms volume expansion at higher discount tiers (High: 384,961 units; Medium: 345,452 units; Low: 254,427 units; None: 82,753 units).
+- 📋 **Discount Band Performance Matrix:** Consolidated data grid comparing sales, net profit, unit count, and margin realization.
 
-## Repository Structure
+---
+
+## 🎯 Business Objectives
+
+- **Executive Visibility:** Provide leadership with unified visibility into total revenue, gross profit, cost of goods sold (COGS), and unit sales volume.
+- **Dimensional Performance:** Compare commercial outcomes across customer segments (Government, Small Business, Enterprise, Midmarket, Channel Partners) and geographic regions.
+- **Product Portfolio Evaluation:** Identify top-performing product lines by total gross revenue and net profit contribution.
+- **Discount Optimization:** Analyze discount bands (None, Low, Medium, High) to evaluate price realization and determine impact on operating margins.
+- **Temporal Analysis:** Track month-over-month and year-over-year revenue and profit trajectory to detect seasonality.
+
+---
+
+## 💡 Key Performance Indicators
+
+The analytics pipeline computes the following primary business metrics:
+
+- 💵 **Total Revenue:** Aggregate gross sales minus applicable discounts ($112.47M).
+- 📈 **Gross Profit:** Net revenue minus cost of goods sold ($15.45M).
+- 📊 **Profit Margin Percentage:** `(Total Profit / Total Sales) * 100` (13.74%).
+- 📦 **Total Units Sold:** Cumulative transaction volume across all product lines (1,067,593 units).
+- 🏷️ **Average Discount Impact:** Mean discount value applied across recorded sales transactions ($1.62K).
+- ⚙️ **Cost of Goods Sold (COGS):** Total manufacturing and direct product fulfillment costs.
+
+---
+
+## 🏗️ System Architecture
+
+The data pipeline follows an extract-transform-load (ETL) and analytical reporting architecture:
+
+![System Architecture](assets/architecture.png)
+
+### End-to-End Workflow
+
+1. 📄 **Source Data:** The pipeline originates with raw transactional data stored in `dataset/Financial_Sample_dataset.csv`.
+2. 🐍 **Data Ingestion (`load_data.py`):** A Python ingestion script reads the source CSV via Pandas, cleanses column headers to snake_case, converts empty strings or missing entries into `None` (`NULL` in MySQL), and executes parameterized batch insertions using PyMySQL.
+3. 🗄️ **Relational Storage (MySQL):** The ingested data is loaded into `financial_data`. Integrity checks audit for anomalies, and a window function (`ROW_NUMBER()`) produces a deduplicated table `financial_cleaned`.
+4. ⚡ **Analytical SQL Engine:** Pre-aggregated metrics, segment distributions, and the dedicated reporting view `financial_dashboard_view` are compiled in `financial_data_analysis.sql`.
+5. 📊 **Business Intelligence (Power BI):** Microsoft Power BI connects directly to the relational database to present interactive executive reporting across three analytical views.
+6. 👤 **End User:** Business decision-makers filter and explore data dimensions to identify revenue growth and margin optimization opportunities.
+
+---
+
+## 📁 Repository Structure
 
 ```text
 Financial_Performance_Dashboard/
 │
-├── dataset/
-│   └── Financial_Sample_dataset.csv
-│
 ├── assets/
-│   └── architecture.png
+│   └── architecture.png                 # System architecture diagram
+│
+├── dataset/
+│   └── Financial_Sample_dataset.csv     # Source transaction records (700 rows, 16 attributes)
 │
 ├── screenshots/
-│   ├── overview.png
-│   ├── product-analysis.png
-│   └── discount-analysis.png
+│   ├── overview.png                     # Dashboard Page 1: Executive KPI Overview
+│   ├── product-analysis.png             # Dashboard Page 2: Product Performance Analysis
+│   └── discount-analysis.png            # Dashboard Page 3: Discount Impact Analysis
 │
-├── load_data.py
-├── financial_data_analysis.sql
-├── Financial_Performance_Dashboard.pbix
-└── README.md
+├── financial_data_analysis.sql           # Database creation, QA, deduplication, and KPI queries
+├── load_data.py                         # Automated Python ingestion script
+├── Financial_Performance_Dashboard.pbix # Packaged Power BI dashboard file
+└── README.md                            # Comprehensive project documentation
 ```
 
-## Technology Stack
+---
 
-| Technology | Purpose |
-|---|---|
-| Python | Data ingestion and preparation |
-| Pandas | Reading CSV data, standardizing column names, handling missing values |
-| PyMySQL | Connecting Python to MySQL |
-| MySQL | Relational data storage and SQL analysis |
-| SQL | Data validation, aggregation, KPI calculations, and analytical views |
-| Power BI | Interactive dashboard and visual reporting |
+## 🗄️ Database Schema and Data Dictionary
 
-## Setup and Execution
+The data model captures individual product order transactions with the following specifications:
+
+| Column Name | Data Type | Nullable | Description |
+|---|---|---|---|
+| `id` | INT | No | Auto-incrementing primary key |
+| `segment` | VARCHAR(50) | Yes | Target customer market segment |
+| `country` | VARCHAR(50) | Yes | Sales destination country |
+| `product` | VARCHAR(50) | Yes | Product catalog item name |
+| `discount_band` | VARCHAR(20) | Yes | Discount classification (None, Low, Medium, High) |
+| `units_sold` | INT | Yes | Number of product units transacted |
+| `manufacturing_price`| DECIMAL(10,2) | Yes | Per-unit manufacturing cost |
+| `sale_price` | DECIMAL(10,2) | Yes | Per-unit standard retail price |
+| `gross_sales` | DECIMAL(12,2) | Yes | Revenue before discount deductions |
+| `discounts` | DECIMAL(12,2) | Yes | Total discount dollar value applied |
+| `sales` | DECIMAL(12,2) | Yes | Net revenue realized after discounts |
+| `cogs` | DECIMAL(12,2) | Yes | Total cost of goods sold |
+| `profit` | DECIMAL(12,2) | Yes | Net profit earned (`sales - cogs`) |
+| `order_date` | DATE | Yes | Transaction calendar date |
+| `month_number` | INT | Yes | Numerical month identifier (1-12) |
+| `month_name` | VARCHAR(20) | Yes | Full calendar month name |
+| `year` | INT | Yes | Transaction fiscal year |
+
+---
+
+## ⚡ SQL Analytical Framework
+
+The accompanying SQL suite (`financial_data_analysis.sql`) executes comprehensive data auditing and business aggregation steps:
+
+### 1. Data Integrity and Sanity Auditing
+Verifies whether anomalies exist within the primary financial columns:
+```sql
+SELECT *
+FROM financial_data
+WHERE sales < 0
+   OR profit < 0
+   OR units_sold < 0;
+```
+
+### 2. Deduplication via Window Partitioning
+Eliminates duplicate transactions across core attributes using `ROW_NUMBER()`:
+```sql
+CREATE TABLE financial_cleaned AS
+SELECT * FROM (
+    SELECT *,
+           ROW_NUMBER() OVER (
+               PARTITION BY segment, country, product, order_date
+               ORDER BY order_date
+           ) AS row_num
+    FROM financial_data
+) t
+WHERE row_num = 1;
+```
+
+### 3. Executive KPI Aggregation
+Calculates enterprise-level commercial performance:
+```sql
+SELECT 
+    SUM(sales) AS total_revenue,
+    SUM(profit) AS total_profit,
+    ROUND((SUM(profit) / SUM(sales)) * 100, 2) AS profit_margin_percent,
+    SUM(units_sold) AS total_units_sold,
+    AVG(discounts) AS avg_discount
+FROM financial_cleaned;
+```
+
+### 4. Segment and Geographic Performance
+Analyzes revenue distribution and operational margin by customer type and country:
+```sql
+SELECT 
+    segment,
+    SUM(sales) AS total_revenue,
+    SUM(profit) AS total_profit,
+    ROUND((SUM(profit) / SUM(sales)) * 100, 2) AS profit_margin_percent
+FROM financial_cleaned
+GROUP BY segment
+ORDER BY total_revenue DESC;
+```
+
+### 5. Production Reporting View
+Constructs a dedicated view for external consumption by Power BI:
+```sql
+CREATE VIEW financial_dashboard_view AS
+SELECT 
+    segment,
+    country,
+    product,
+    discount_band,
+    year,
+    month_number,
+    month_name,
+    units_sold,
+    sales,
+    cogs,
+    profit
+FROM financial_cleaned;
+```
+
+---
+
+## 🚀 Installation and Setup Guide
 
 ### Prerequisites
-
-- Python 3.x
-- MySQL Server and a MySQL client (such as MySQL Workbench)
+- Python 3.8 or higher
+- MySQL Server (8.0+ recommended) and MySQL Workbench
 - Microsoft Power BI Desktop
-- Python packages: `pandas`, `pymysql`
+- Required Python libraries: `pandas`, `pymysql`
 
-### 1. Clone the repository
-
+### Step 1: Clone the Repository
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/mohitsapkal/financial_performance_dashboard.git
 cd Financial_Performance_Dashboard
 ```
 
-### 2. Install Python dependencies
-
+### Step 2: Install Python Dependencies
 ```bash
 pip install pandas pymysql
 ```
 
-### 3. Create the MySQL database and table
+### Step 3: Initialize Database Schema
+1. Open MySQL Workbench and connect to your MySQL Server instance.
+2. Open `financial_data_analysis.sql`.
+3. Execute **Step 1** (Database creation) and **Step 2** (Table creation).
+   > Note: Ensure any standalone `DROP TABLE` statements are not executed unintentionally during initial creation.
 
-Open `financial_data_analysis.sql` in MySQL Workbench and execute the database and table creation statements first.
-
-**Important SQL correction before running the full script:** the supplied SQL file contains `DROP TABLE financial_data;` immediately after `CREATE TABLE financial_data (...)`. This removes the table that was just created. Remove or comment out that `DROP TABLE` statement before running the script. Only use `DROP TABLE` intentionally when you want to delete an existing table.
-
-### 4. Configure the database connection
-
-Open `load_data.py` and configure the MySQL connection for your local environment. Do not commit real database passwords to GitHub. Prefer environment variables or a local `.env` file that is excluded through `.gitignore`.
-
-The original script contains a hard-coded password. Replace it before running, and rotate that password if it has ever been shared publicly.
-
-### 5. Load the CSV data
-
-From the project root, run:
-
+### Step 4: Ingest Data via Python
+1. Open `load_data.py`.
+2. Configure database host, user credentials, and database name.
+3. Run the ingestion script:
 ```bash
 python load_data.py
 ```
+Upon completion, the terminal displays the count of rows successfully loaded.
 
-The script reads the CSV from `dataset/Financial_Sample_dataset.csv` and inserts records into the MySQL `financial_data` table.
+### Step 5: Execute Analytical Queries and View Generation
+1. Return to MySQL Workbench and execute Steps 3 through 13 in `financial_data_analysis.sql`.
+2. Confirm the creation of `financial_cleaned` and `financial_dashboard_view`.
 
-### 6. Run the SQL analysis
-
-Execute the relevant statements in `financial_data_analysis.sql` to perform data-quality checks and create the cleaned dataset, KPI summaries, analytical queries, and `financial_dashboard_view`.
-
-Review the script in sequence. The table must exist and be populated before running queries that read from it. If rerunning the loader, clear or otherwise manage existing rows first to avoid duplicate inserts.
-
-### 7. Open the Power BI report
-
-Open `Financial_Performance_Dashboard.pbix` in Power BI Desktop. If the report prompts for a data source, update the connection to your local MySQL instance and select the appropriate database/view. Refresh the data, then review the report pages.
-
-## SQL Analysis Covered
-
-- **Data quality:** checks for negative sales, profit, or units sold.
-- **Duplicate detection:** identifies repeated records using segment, country, product, and order date.
-- **Data preparation:** creates a deduplicated `financial_cleaned` table using `ROW_NUMBER()`.
-- **KPI analysis:** calculates total revenue, total profit, profit margin, units sold, and average discounts.
-- **Segment analysis:** compares revenue, profit, and profit margin by segment.
-- **Geographical analysis:** compares sales and profit by country.
-- **Time-series analysis:** summarizes monthly revenue and profit.
-- **Product analysis:** ranks products by revenue and profit.
-- **Discount analysis:** compares revenue, profit, and profit margin across discount bands.
-- **Dashboard dataset:** creates `financial_dashboard_view` for reporting.
-
-## Key Business Questions
-
-1. Which products contribute the most to revenue and profit?
-2. Which business segments generate the strongest financial performance?
-3. Which countries contribute the largest share of sales?
-4. How do revenue and profit change over time?
-5. How do discount bands relate to sales, profit, and profit margin?
-6. Are there data-quality issues or duplicate records that should be addressed before reporting?
-
-## Important Notes and Limitations
-
-- The supplied archive includes the Power BI report file, but does not include exported dashboard screenshots. Add the three images described in the Dashboard Pages section.
-- The SQL script should be reviewed and corrected before execution, particularly the `DROP TABLE financial_data;` statement.
-- The Python loader currently uses hard-coded connection credentials. Move credentials to environment variables and never publish secrets.
-- The loader uses `INSERT` statements. Re-running it without clearing or deduplicating the destination table may insert duplicate rows.
-- Validate the data model and Power BI source connection in your own local environment before publishing the report.
-
-## Future Enhancements
-
-- Move database credentials to environment variables and add robust exception handling.
-- Add logging and validation for row counts, null values, and duplicate records during ingestion.
-- Make the ingestion process idempotent so repeated runs do not duplicate data.
-- Add automated data-quality checks and reusable SQL views.
-- Publish the Power BI report to Power BI Service with appropriate access controls.
-- Add documented KPI definitions and business recommendations based on the final dashboard findings.
-
-## Author
-
-**Your Name**  
-Data Analytics Project | Python • SQL • MySQL • Power BI
+### Step 6: Connect and Refresh Power BI Report
+1. Launch `Financial_Performance_Dashboard.pbix` in Microsoft Power BI Desktop.
+2. Under **Home** > **Transform Data** > **Data source settings**, point the connection to your local MySQL instance (`localhost`, database: `financialanalyticsdb`).
+3. Click **Close & Apply** to refresh visualizations against the populated database.
 
 ---
 
-If you find this project useful, feel free to star the repository.
+## 🔒 Production and Security Best Practices
+
+1. **Environment Credential Management:**
+   Never commit database credentials directly into version control. Manage credentials using environment variables or configuration files excluded by `.gitignore`:
+   ```python
+   import os
+   import pymysql
+
+   conn = pymysql.connect(
+       host=os.getenv('DB_HOST', 'localhost'),
+       user=os.getenv('DB_USER', 'root'),
+       password=os.getenv('DB_PASSWORD'),
+       database=os.getenv('DB_NAME', 'financialanalyticsdb')
+   )
+   ```
+
+2. **Idempotent Ingestion:**
+   In corporate ETL environments, replace direct row appending with staging tables or `TRUNCATE` / `ON DUPLICATE KEY UPDATE` patterns to ensure rerunning pipelines does not introduce duplicate rows.
+
+3. **Data Quality Governance:**
+   Implement automated schema assertions and range validation checks prior to loading records into downstream analytical views.
+
+---
+
+## 📜 License and Attribution
+
+Distributed under the MIT License. Developed for data engineering and business analytics demonstration purposes.

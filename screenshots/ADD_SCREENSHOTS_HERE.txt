@@ -1,4 +1,0 @@
-Add Power BI page exports here:
-- overview.png
-- product-analysis.png
-- discount-analysis.png
